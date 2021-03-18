@@ -1,0 +1,24 @@
+{
+  "name": "console-app",
+  "version": "1.0.0",
+  "description": "Console application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --no-stdin --exec babel-node index.js"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Yurii Andrashko",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.10",
+    "@babel/preset-env": "^7.13.10"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.7",
+    "prompt-sync": "^4.2.0"
+  }
+}
