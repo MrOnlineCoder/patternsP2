@@ -29,14 +29,19 @@ namespace cs
             this.stream = new StreamWriter(this.fileName, true);
         }
 
+        ~LogSystem(){
+            this.stream.Close();
+        }
+
         public void Log(string message)
         {
             this.stream.WriteLine($"{DateTime.Now} : {message}");
             this.stream.Flush();
         }
 
-        ~LogSystem(){
-            this.stream.Close();
+        public void ShowLog()
+        {
+            //тут потрібно реалізувати вивід логу з файлу в консоль
         }
     }
 }

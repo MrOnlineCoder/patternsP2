@@ -21,11 +21,15 @@ namespace cs
             var  log2 = LogSystem.getInstance();
             log1.Log("Test");
             log2.Log("Hello world");
+            log1.ShowLog();
+            log2.ShowLog();
         }
         static void Main(string[] args)
         {
             //TestSingleton();
             TestLogSystem();
+
+           
         }
     }
 }
