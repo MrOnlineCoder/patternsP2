@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Creational.Singleton;
 using Creational.FactoryMethod;
+using Creational.AbstractFactory;
 
 namespace cs
 {
@@ -29,11 +30,11 @@ namespace cs
             log2.ShowLog();
         }
         
-        static void TestFabricMaethod()
+        static void TestFabricMethod()
         {
-            Console.WriteLine("Enter products number");
+            Console.Write("Enter products number");
             int count = int.Parse(Console.ReadLine());
-            Console.WriteLine ("Select the product type A or B:");
+            Console.Write ("Select the product type A or B:");
             string choise = Console.ReadLine();
             ICreator productCreator;
             if (choise == "A")
@@ -49,11 +50,28 @@ namespace cs
             }
 
         }
+        
+        static void TestAbstractFabric()
+        {
+            Console.Write ("Select category first or second:");
+            int category = int.Parse(Console.ReadLine());
+            IAbstractFactory factory;
+            if (category == 1)
+                factory = new FactoryFirstClass();
+            else
+                factory = new FactorySecondClass();
+            IProductA productA = factory.CreateProductA();
+            IProductB productB = factory.CreateProductB();
+            Console.WriteLine(productA.OperationA());
+            Console.WriteLine(productB.OperationB());
+            Console.WriteLine(productB.OperationWithProductA(productA));
+        }
         static void Main(string[] args)
         {
             //TestSingleton();
             //TestLogSystem();           
-            TestFabricMaethod();
+            //TestFabricMethod();
+            TestAbstractFabric();
         }
     }
 }
