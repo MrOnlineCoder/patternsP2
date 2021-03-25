@@ -4,6 +4,7 @@ using Creational.Singleton;
 using Creational.FactoryMethod;
 using Creational.AbstractFactory;
 using Creational.Builder;
+using Creational.Prototype;
 
 namespace cs
 {
@@ -88,13 +89,24 @@ namespace cs
             string[] parts = new string[3] { "One", "Two", "Tree" };
             Console.WriteLine(director.BuildFromParts(parts).ToString());
         }
+
+        static void TestPrototype()
+        {
+            var p = new SomeType();
+            CustomProduct product = new CustomProduct(p);
+            CustomProduct productClone = product.Clone();
+            (productClone.obj as SomeType).Name = "x";
+            Console.WriteLine(product.ToString());
+            Console.WriteLine(productClone.ToString());
+        }
         static void Main(string[] args)
         {
             //TestSingleton();
             //TestLogSystem();           
             // TestFabricMethod();
             //TestAbstractFabric();
-            TestBuilder();
+            //TestBuilder();
+            TestPrototype();
         }
     }
 }

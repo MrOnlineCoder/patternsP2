@@ -19,8 +19,20 @@ const readLine = prompt()
 // import Factory from "./1_3_2_factory";
 // testFactory();
 
-import { Builder, Director } from "./1_4_builder";
-testBuilder();
+// import { Builder, Director } from "./1_4_builder";
+// testBuilder();
+
+import { SomeType, ProductPrototype, CustomProduct } from "./1_5_prototype";
+testPrototype();
+
+function testPrototype() {
+    var p = new SomeType();
+    let product = new CustomProduct(p);
+    let productClone = product.clone();
+    productClone.obj.name = "x";
+    console.log(product);
+    console.log(productClone);
+}
 
 function testBuilder() {
     const builder = new Builder();
