@@ -1,36 +1,39 @@
 using System;
-namespace cs
+namespace Creational
 {
-    class Singleton
+    namespace Singleton
     {
-        private static Singleton instance = null;
-
-        private Singleton()
+        class Singleton
         {
-            Random rnd = new Random(DateTime.Now.Millisecond);
-            this.randomNumber = rnd.Next();
-        }
+            private static Singleton instance = null;
 
-        public static Singleton getInstance()
-        {
-            if (instance == null)
+            private Singleton()
             {
-                instance = new Singleton();
+                Random rnd = new Random(DateTime.Now.Millisecond);
+                this.randomNumber = rnd.Next();
             }
-            return instance;
-        }
 
-        public double randomNumber;
-        private int counter = 0;
+            public static Singleton getInstance()
+            {
+                if (instance == null)
+                {
+                    instance = new Singleton();
+                }
+                return instance;
+            }
 
-        public void Print ()
-        {
-            Console.WriteLine($"My random number =  {this.randomNumber}");
-        }
+            public double randomNumber;
+            private int counter = 0;
 
-        public void IncCounter()
-        {
-            Console.WriteLine($"Counter = {++this.counter}");
+            public void Print()
+            {
+                Console.WriteLine($"My random number =  {this.randomNumber}");
+            }
+
+            public void IncCounter()
+            {
+                Console.WriteLine($"Counter = {++this.counter}");
+            }
         }
     }
 }

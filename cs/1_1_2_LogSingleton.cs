@@ -1,47 +1,52 @@
 using System;
 using System.IO;
 
-namespace cs
+namespace Creational
 {
-    /* 
-    Система має
-        0. файл має бути один для всієї системи
-        1. Метод дописати в кінець текстовго файлу повідомленя 
-        2. метод вивести все  з файлу в консоль
-    */
-
-    class LogSystem 
+    namespace Singleton
     {
+        /* 
+        Система має
+            0. файл має бути один для всієї системи
+            1. Метод дописати в кінець текстовго файлу повідомленя 
+            2. метод вивести все  з файлу в консоль
+        */
 
-        private static LogSystem instance = null;
-        public static LogSystem getInstance()
+        class LogSystem
         {
-            if (instance == null)
+
+            private static LogSystem instance = null;
+            public static LogSystem getInstance()
             {
-                instance = new LogSystem();
+                if (instance == null)
+                {
+                    instance = new LogSystem();
+                }
+                return instance;
             }
-            return instance;
-        }
-        private string fileName = "log.txt";
-        private StreamWriter stream;
+            private string fileName = "log.txt";
+            private StreamWriter stream;
 
-        private LogSystem(){
-            this.stream = new StreamWriter(this.fileName, true);
-        }
+            private LogSystem()
+            {
+                this.stream = new StreamWriter(this.fileName, true);
+            }
 
-        ~LogSystem(){
-            this.stream.Close();
-        }
+            ~LogSystem()
+            {
+                this.stream.Close();
+            }
 
-        public void Log(string message)
-        {
-            this.stream.WriteLine($"{DateTime.Now} : {message}");
-            this.stream.Flush();
-        }
+            public void Log(string message)
+            {
+                this.stream.WriteLine($"{DateTime.Now} : {message}");
+                this.stream.Flush();
+            }
 
-        public void ShowLog()
-        {
-            //тут потрібно реалізувати вивід логу з файлу в консоль
+            public void ShowLog()
+            {
+                //тут потрібно реалізувати вивід логу з файлу в консоль
+            }
         }
     }
 }

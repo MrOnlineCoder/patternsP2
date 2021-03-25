@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using Creational.Singleton;
+using Creational.FactoryMethod;
 
 namespace cs
 {
@@ -16,7 +19,8 @@ namespace cs
             s1.IncCounter();
         }
         
-        static void TestLogSystem(){
+        static void TestLogSystem()
+        {
             var  log1 = LogSystem.getInstance();
             var  log2 = LogSystem.getInstance();
             log1.Log("Test");
@@ -24,12 +28,32 @@ namespace cs
             log1.ShowLog();
             log2.ShowLog();
         }
+        
+        static void TestFabricMaethod()
+        {
+            Console.WriteLine("Enter products number");
+            int count = int.Parse(Console.ReadLine());
+            Console.WriteLine ("Select the product type A or B:");
+            string choise = Console.ReadLine();
+            ICreator productCreator;
+            if (choise == "A")
+                productCreator = new ProductACreator ();
+            else 
+                productCreator = new ProductBCreator();
+
+            List <IProduct> productList = new List<IProduct>(count);
+            for (int i=0; i<count; i++)
+            {
+                productList.Add( productCreator.CreateProduct());
+                Console.WriteLine(productList[i].Operation());
+            }
+
+        }
         static void Main(string[] args)
         {
             //TestSingleton();
-            TestLogSystem();
-
-           
+            //TestLogSystem();           
+            TestFabricMaethod();
         }
     }
 }
