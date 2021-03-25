@@ -10,8 +10,46 @@ const readLine = prompt()
 // import { ProductACreator, ProductBCreator } from "./1_2_1_factory_method";
 // testFactoryMethod();
 
-import CreateProduct from "./1_2_2_factory_mathod";
-testFactoryMethod2();
+// import CreateProduct from "./1_2_2_factory_method";
+// testFactoryMethod2();
+
+// import { FactoryFirstClass, FactorySecondClass } from "./1_3_1_abstract_factory";
+// testAbstractFactory();
+
+import Factory from "./1_3_2_factory";
+testFactory();
+
+function testFactory(){
+    console.log("Select category first or second:");
+    let category = parseInt(readLine());
+    let factory;
+    if (category == 1)
+        factory = new Factory("first");
+    else
+        factory = new Factory("second");
+    console.log(factory);
+    let productA = factory.CreateProduct("A");
+    let productB = factory.CreateProduct("B");
+    console.log(productA.OperationA());
+    console.log(productB.OperationB());
+    console.log(productB.OperationWithProductA(productA));
+}
+
+function testAbstractFactory() {
+    console.log("Select category first or second:");
+    let category = parseInt(readLine());
+    let factory;
+    if (category == 1)
+        factory = new FactoryFirstClass();
+    else
+        factory = new FactorySecondClass();
+    let productA = factory.CreateProductA();
+    let productB = factory.CreateProductB();
+    console.log(productA.OperationA());
+    console.log(productB.OperationB());
+    console.log(productB.OperationWithProductA(productA));
+}
+
 
 function testFactoryMethod2() {
     console.log("Enter products number");
