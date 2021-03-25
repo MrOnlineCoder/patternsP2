@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Creational
 {
     namespace FactoryMethod
@@ -10,6 +12,16 @@ namespace Creational
         interface ICreator
         {
             IProduct CreateProduct();
+
+            public List<IProduct> CreateProductList(int count)
+            {
+                List<IProduct> productList = new List<IProduct>(count);
+                for (int i = 0; i < count; i++)
+                {
+                    productList.Add(this.CreateProduct());
+                }
+                return productList;
+            }
         }
 
         class ProductA : IProduct
@@ -27,7 +39,15 @@ namespace Creational
             }
         }
 
-        class ProductACreator: ICreator
+        class ProductC : IProduct
+        {
+            public string Operation()
+            {
+                return "This is C";
+            }
+        }
+
+        class ProductACreator : ICreator
         {
             public IProduct CreateProduct()
             {
@@ -35,11 +55,20 @@ namespace Creational
             }
         }
 
-        class ProductBCreator: ICreator
+        class ProductBCreator : ICreator
         {
             public IProduct CreateProduct()
             {
                 return new ProductВ();
+            }
+
+        }
+
+        class ProductCCreator : ICreator
+        {
+            public IProduct CreateProduct()
+            {
+                return new ProductC();
             }
         }
     }

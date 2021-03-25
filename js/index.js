@@ -27,7 +27,6 @@ function testFactory(){
         factory = new Factory("first");
     else
         factory = new Factory("second");
-    console.log(factory);
     let productA = factory.CreateProduct("A");
     let productB = factory.CreateProduct("B");
     console.log(productA.OperationA());
@@ -73,9 +72,8 @@ function testFactoryMethod() {
         productCreator = new ProductACreator();
     else
         productCreator = new ProductBCreator();
-    let productList = [];
+    let productList = productCreator.CreateProductList(count);
     for (let i = 0; i < count; i++) {
-        productList.push(productCreator.CreateProduct());
         console.log(productList[i].Operation());
     }
 }

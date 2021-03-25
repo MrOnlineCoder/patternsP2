@@ -14,7 +14,21 @@ class ProductВ
     }
 }
 
-class ProductACreator
+class ProductCreator{
+    CreateProduct(){
+        return null;
+    }
+
+    CreateProductList(count){
+        let productList = [];
+        for(let i=0;i<count; i++){
+            productList.push(this.CreateProduct())
+        }
+        return productList;
+    }
+}
+
+class ProductACreator extends ProductCreator
 {
     CreateProduct()
     {
@@ -22,7 +36,7 @@ class ProductACreator
     }
 }
 
-class ProductBCreator
+class ProductBCreator extends ProductCreator
 {
     CreateProduct()
     {

@@ -32,23 +32,24 @@ namespace cs
         
         static void TestFabricMethod()
         {
-            Console.Write("Enter products number");
+            Console.Write("Enter products number:");
             int count = int.Parse(Console.ReadLine());
-            Console.Write ("Select the product type A or B:");
+            Console.Write ("Select the product type A, B or C:");
             string choise = Console.ReadLine();
             ICreator productCreator;
             if (choise == "A")
                 productCreator = new ProductACreator ();
-            else 
+            else if (choise == "B")
                 productCreator = new ProductBCreator();
-
-            List <IProduct> productList = new List<IProduct>(count);
+            else if (choise == "C")
+                productCreator = new ProductCCreator();
+            else 
+                throw new Exception("Wrong product type");
+            List <IProduct> productList = productCreator.CreateProductList(count);
             for (int i=0; i<count; i++)
             {
-                productList.Add( productCreator.CreateProduct());
                 Console.WriteLine(productList[i].Operation());
             }
-
         }
         
         static void TestAbstractFabric()
@@ -70,7 +71,7 @@ namespace cs
         {
             //TestSingleton();
             //TestLogSystem();           
-            //TestFabricMethod();
+            // TestFabricMethod();
             TestAbstractFabric();
         }
     }

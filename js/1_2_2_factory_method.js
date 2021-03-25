@@ -14,7 +14,6 @@ class ProductВ
     }
 }
 
-
 function CreateProduct(product){
     if (product == "A")
         return new ProductA();
