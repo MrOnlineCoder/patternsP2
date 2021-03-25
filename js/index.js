@@ -16,10 +16,32 @@ const readLine = prompt()
 // import { FactoryFirstClass, FactorySecondClass } from "./1_3_1_abstract_factory";
 // testAbstractFactory();
 
-import Factory from "./1_3_2_factory";
-testFactory();
+// import Factory from "./1_3_2_factory";
+// testFactory();
 
-function testFactory(){
+import { Builder, Director } from "./1_4_builder";
+testBuilder();
+
+function testBuilder() {
+    const builder = new Builder();
+    let product = builder
+        .SetName("Custom product")
+        .SetDateStemp()
+        .AddPart("Part One")
+        .SetDateStemp()
+        .AddPart("Part Two")
+        .SetDateStemp()
+        .AddPart("Part Three")
+        .GetProduct();
+    console.log(product.toString());
+    const director = new Director(builder);
+    console.log(director.Empty().toString());
+    console.log(director.Example().toString());
+    const parts = ["One", "Two", "Tree"];
+    console.log(director.BuildFromParts(parts).toString());
+}
+
+function testFactory() {
     console.log("Select category first or second:");
     let category = parseInt(readLine());
     let factory;
