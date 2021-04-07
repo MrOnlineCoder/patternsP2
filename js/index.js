@@ -22,8 +22,29 @@ const readLine = prompt()
 // import { Builder, Director } from "./1_4_builder";
 // testBuilder();
 
-import { SomeType, ProductPrototype, CustomProduct } from "./1_5_prototype";
-testPrototype();
+// import { SomeType, ProductPrototype, CustomProduct } from "./1_5_prototype";
+// testPrototype();
+
+import { RealSubject, Proxy, ProxyFunctionyFu, ProxyFunction } from "./2_1_proxy";
+testProxy();
+function testProxy() {
+    let subject = new RealSubject();
+    console.log(subject.request());
+    subject = new Proxy(subject);
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    subject = ProxyFunction(subject);
+    console.log('===========================');
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+
+}
 
 function testPrototype() {
     var p = new SomeType();
