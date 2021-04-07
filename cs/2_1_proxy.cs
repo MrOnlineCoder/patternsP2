@@ -1,5 +1,5 @@
 using System;
-namespace Strutural.Proxy
+namespace Structural.Proxy
 {
     public interface ISubject
     {

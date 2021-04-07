@@ -5,7 +5,8 @@
 // using Creational.AbstractFactory;
 // using Creational.Builder;
 // using Creational.Prototype;
-using Strutural.Proxy;
+using Structural.Proxy;
+using Structural.Decorator;
 
 namespace cs
 {
@@ -111,6 +112,15 @@ namespace cs
             Console.WriteLine( subject.Request());
         }
 
+        static void TestDecorator(){
+            IComponent component = new ConcreteComponent();
+            Console.WriteLine(component.Operation());
+            Decorator decorator = new ConcreteDecoratorA(component);
+            Console.WriteLine(decorator.Operation());
+            decorator = new ConcreteDecoratorB(decorator);
+            Console.WriteLine(decorator.Operation());
+        }
+
         static void Main(string[] args)
         {
             //TestSingleton();
@@ -120,7 +130,8 @@ namespace cs
             //TestBuilder();
             //TestPrototype();
 
-            TestProxy();
+            //TestProxy();
+            TestDecorator();
             Console.ReadLine();
         }
     }
