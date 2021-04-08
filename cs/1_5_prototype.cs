@@ -29,7 +29,7 @@ namespace Creational
 
             public virtual ProductPrototype Clone()
             {
-                return this.MemberwiseClone () as ProductPrototype;
+                return this.MemberwiseClone() as ProductPrototype;
             }
         }
 
@@ -44,7 +44,9 @@ namespace Creational
             {
                 CustomProduct clone = this.MemberwiseClone() as CustomProduct;
                 clone.obj = this.obj.Clone();
+                clone.CreatedAt = DateTime.Now;
                 return clone;
+                // return this.MemberwiseClone() as CustomProduct; // Deep copy problem
             }
 
             public override string ToString()

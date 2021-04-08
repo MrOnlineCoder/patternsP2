@@ -105,7 +105,7 @@ namespace cs
             //TestLogSystem();           
             // TestFabricMethod();
             //TestAbstractFabric();
-            //TestBuilder();
+            // TestBuilder();
             TestPrototype();
         }
     }

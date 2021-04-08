@@ -28,10 +28,14 @@ testPrototype();
 function testPrototype() {
     var p = new SomeType();
     let product = new CustomProduct(p);
+    setTimeout( ()=>{
     let productClone = product.clone();
-    productClone.obj.name = "x";
+    let productClone2 = product.clone();
+    productClone.obj.name = "Clone";
     console.log(product);
     console.log(productClone);
+    console.log(productClone2);
+    }, 5000);
 }
 
 function testBuilder() {

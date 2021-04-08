@@ -27,9 +27,8 @@ namespace Creational
         
         interface IBuilder
         {
-            IBuilder AddPart(string part);
+            IBuilder AddPart(object part);
             IBuilder SetDateStemp();
-
             IBuilder SetName(string name);
             Product GetProduct();
         }
@@ -48,9 +47,9 @@ namespace Creational
                 return this;
             }
 
-            public IBuilder AddPart (string part)
+            public IBuilder AddPart (object part)
             {
-                this.product.Add(part);
+                this.product.Add(part as string);
                 return this;
             }
 

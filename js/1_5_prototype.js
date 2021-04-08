@@ -24,6 +24,7 @@ class CustomProduct extends ProductPrototype {
     clone() {
         let clone = super.clone();
         clone.obj = Object.assign({}, this.obj);
+        clone.createdAt = new Date(Date.now());
         return clone;
     }
 }
