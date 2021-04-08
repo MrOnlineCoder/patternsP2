@@ -4,7 +4,7 @@ class RealSubject {
     }
 }
 
-class Proxy {
+class MyProxy {
     constructor(realSubject) {
         if (realSubject)
             this.realSubject = realSubject;
@@ -23,7 +23,7 @@ class Proxy {
     }
 
     checkAccess() {
-        return Math.random() > 0.5;
+        return Math.random() > 0.1;
     }
 
     logAccess(message) {
@@ -32,27 +32,28 @@ class Proxy {
 }
 
 function ProxyFunction(realSubject) {
-    if (realSubject && realSubject.request) {
-        const request = realSubject.request;
-        realSubject.request = () => {
+    function proxyMethod(method) {
+        return function () {
             if (checkAccess()) {
-                const response = request.apply (realSubject);
+                const response = method.apply(realSubject);
                 logAccess(response);
                 return response;
             }
             else
                 return "Proxy response";
         }
-        return realSubject;
+
+        function checkAccess() {
+            return  Math.random() < 0.5;
+        }
+
+        function logAccess(message) {
+            console.log(`Request was proxied by function: ${message}`);
+        }
     }
 
-    function checkAccess() {
-        return Math.random() < 0.5;
-    }
-
-    function logAccess(message) {
-        console.log(`Request was proxied by function: ${message}`);
-    }
+    realSubject.request = proxyMethod(realSubject.request);
+    return realSubject;
 }
 
-export { RealSubject, Proxy, ProxyFunction }
+export { RealSubject, MyProxy, ProxyFunction }
