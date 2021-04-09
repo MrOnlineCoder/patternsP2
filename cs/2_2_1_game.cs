@@ -89,15 +89,15 @@ namespace Structural.Game
 
     class DefenceBuff : CharacterBuff
     {
-        protected double ReuceDamageCoefitient;
-        public DefenceBuff(IDamageActor damageActor, int DefencePercet) : base(damageActor)
+        protected double ReduceDamageCoeffitient;
+        public DefenceBuff(IDamageActor DamageActor, int DefencePercet) : base(DamageActor)
         {
-            this.ReuceDamageCoefitient = 1 - DefencePercet / 100.0;
+            this.ReduceDamageCoeffitient = 1 - DefencePercet / 100.0;
         }
 
         public override void TakeDamage(int Damage)
         {
-            base.TakeDamage((int) Math.Floor(Damage * this.ReuceDamageCoefitient));
+            base.TakeDamage((int) Math.Floor(Damage * this.ReduceDamageCoeffitient));
         }
     }
 }
