@@ -22,8 +22,46 @@ const readLine = prompt()
 // import { Builder, Director } from "./1_4_builder";
 // testBuilder();
 
-import { SomeType, ProductPrototype, CustomProduct } from "./1_5_prototype";
-testPrototype();
+// import { SomeType, ProductPrototype, CustomProduct } from "./1_5_prototype";
+// testPrototype();
+
+// import { RealSubject, MyProxy, ProxyFunctionyFu, ProxyFunction } from "./2_1_proxy";
+// testProxy();
+
+import {ConcreteComponent, ConcreteDecoratorA, ConcreteDecoratorB, DecoratorFunction} from "./2_2_decorator";
+testDecorator();
+
+function testDecorator(){
+    let component = new ConcreteComponent();
+    console.log(component.operation());
+    component = new ConcreteDecoratorA(component);
+    console.log(component.operation());
+    component = new ConcreteDecoratorB(component);
+    console.log(component.operation());
+
+    let component2 = DecoratorFunction(new ConcreteComponent());
+    console.log(component2.operation());
+    console.log(component2.otherOperation());
+}
+
+function testProxy() {
+    let subject = new RealSubject();
+    console.log(subject.request());
+    subject = new MyProxy(subject);
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    subject = ProxyFunction(subject);
+    console.log('===========================');
+    subject = ProxyFunction(new RealSubject());
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+    console.log(subject.request());
+}
 
 function testPrototype() {
     var p = new SomeType();
