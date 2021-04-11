@@ -12,13 +12,12 @@ class Decorator {
   operation() {
     if (this._component && this._component.operation) {
       return this._component.operation();
-    }
-    else {
+    } else {
       return "";
     }
   }
 
-  undecorate(){
+  undecorate() {
     return this._component;
   }
 }
@@ -40,22 +39,22 @@ class ConcreteDecoratorB extends Decorator {
 }
 
 
-function DecoratorFunction(component){
-  function decorateMethod(method){
-    return function(){
+function DecoratorFunction(component) {
+  function decorateMethod(method) {
+    return function () {
       return `function decorator ${method.apply(component)}`;
     }
   }
   if (component && component.operation)
     component.operation = decorateMethod(component.operation);
   else
-    component.operation = function(){
+    component.operation = function () {
       return "";
     }
-  component.otherOperation = function(){ 
+  component.otherOperation = function () {
     return this.operation().length;
   }
   return component;
 }
 
-export {ConcreteComponent, ConcreteDecoratorA, ConcreteDecoratorB, DecoratorFunction}
+export { ConcreteComponent, ConcreteDecoratorA, ConcreteDecoratorB, DecoratorFunction }

@@ -44,7 +44,7 @@ function ProxyFunction(realSubject) {
         }
 
         function checkAccess() {
-            return  Math.random() < 0.5;
+            return Math.random() < 0.5;
         }
 
         function logAccess(message) {

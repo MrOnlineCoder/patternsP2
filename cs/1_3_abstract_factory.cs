@@ -60,27 +60,27 @@ namespace Creational
             }
         }
 
-        class FactoryFirstClass : IAbstractFactory 
+        class FactoryFirstClass : IAbstractFactory
         {
             public IProductA CreateProductA()
             {
                 return new ProductAFirst();
             }
 
-            public IProductB CreateProductB ()
+            public IProductB CreateProductB()
             {
                 return new ProductBFirst();
             }
         }
 
-        class FactorySecondClass : IAbstractFactory 
+        class FactorySecondClass : IAbstractFactory
         {
             public IProductA CreateProductA()
             {
                 return new ProductASecond();
             }
 
-            public IProductB CreateProductB ()
+            public IProductB CreateProductB()
             {
                 return new ProductBSecond();
             }
