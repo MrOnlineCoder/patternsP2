@@ -1,9 +1,9 @@
 class Adaptee {
     getSpecificRequest(request, requestLength, mustBeTrue) {
         if (!mustBeTrue)
-            throw "MustBeTrue is not true";
+            throw "mustBeTrue is not true";
         if (request.length != requestLength)
-            throw "RequestLength is wrong";
+            throw "requestLength is wrong";
         return `Responce for ${request}`;
     }
 }
@@ -24,4 +24,17 @@ class Adapter
     }
 }
 
-export {Adaptee, Adapter};
+function adapt(adaptee){
+    function adaptRequest(method){
+        return function(request){
+           return `This is adapted '${method.apply(adaptee, [request, request.length, true])}'`;
+        }
+    }
+
+    if (!(adaptee && adaptee.getSpecificRequest))
+        throw `can't adapt ${adaptee}`;
+    adaptee.getRequest = adaptRequest(adaptee.getSpecificRequest);
+    return adaptee;
+}
+
+export {Adaptee, Adapter, adapt};

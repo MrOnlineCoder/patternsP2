@@ -1,6 +1,6 @@
 import { RealSubject, MyProxy, ProxyFunction } from "./2_1_proxy";
 import { ConcreteComponent, ConcreteDecoratorA, ConcreteDecoratorB, DecoratorFunction } from "./2_2_decorator";
-import { Adaptee, Adapter } from "./2_3_adapter";
+import { Adaptee, Adapter, adapt } from "./2_3_adapter";
 import CultureFacade from "./2_4_facade";
 
 export default {
@@ -15,6 +15,9 @@ export default {
         console.log(oldLib.getSpecificRequest("Test", 4, true));
         let newLib = new Adapter(oldLib);
         console.log(newLib.getRequest("Test"));
+        console.log("============================");
+        let funcLib = adapt(oldLib);
+        console.log(funcLib.getRequest("Test"));
     },
     testProxy: function () {
         let subject = new RealSubject();
