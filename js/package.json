@@ -12,10 +12,10 @@
   "author": "Yurii Andrashko",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.13.10",
-    "@babel/core": "^7.13.10",
-    "@babel/node": "^7.13.10",
-    "@babel/preset-env": "^7.13.10"
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.15"
   },
   "dependencies": {
     "nodemon": "^2.0.7",

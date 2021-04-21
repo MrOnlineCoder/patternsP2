@@ -6,8 +6,7 @@ namespace cs
     {
         static void Main(string[] args)
         {
-            StructuralPaterns.TestAdapter();
-            StructuralPaterns.TestAdapterWinApi();
+            StructuralPaterns.TestBridge();
             Console.ReadLine();
         }
     }

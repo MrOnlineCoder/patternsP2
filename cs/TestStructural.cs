@@ -3,11 +3,21 @@ using Structural.Proxy;
 using Structural.Decorator;
 using Structural.Game;
 using Structural.Adapter;
+using Structural.Bridge;
 
 namespace Test
 {
     class StructuralPaterns
     {
+        public static void TestBridge()
+        {
+            Abstraction abstraction = new Abstraction(new ConcreteImplementationA());
+            Abstraction exAbstractionA = new ExtendedAbstraction( new ConcreteImplementationA());
+            Abstraction exAbstractionB = new ExtendedAbstraction( new ConcreteImplementationB());
+            Console.WriteLine(abstraction.Operation());
+            Console.WriteLine(exAbstractionA.Operation());
+            Console.WriteLine(exAbstractionB.Operation());
+        }
         public static void TestProxy()
         {
             ISubject subject = new RealSubject("8.8.8.8");
