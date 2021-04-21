@@ -11,10 +11,12 @@ namespace Test
     {
         public static void TestBridge()
         {
-            Abstraction abstraction = new Abstraction(new ConcreteImplementationA());
+            Abstraction abstractionA = new Abstraction(new ConcreteImplementationA());
+            Abstraction abstractionB = new Abstraction(new ConcreteImplementationB());
             Abstraction exAbstractionA = new ExtendedAbstraction( new ConcreteImplementationA());
             Abstraction exAbstractionB = new ExtendedAbstraction( new ConcreteImplementationB());
-            Console.WriteLine(abstraction.Operation());
+            Console.WriteLine(abstractionA.Operation());
+            Console.WriteLine(abstractionB.Operation());
             Console.WriteLine(exAbstractionA.Operation());
             Console.WriteLine(exAbstractionB.Operation());
         }
