@@ -6,7 +6,7 @@ namespace cs
     {
         static void Main(string[] args)
         {
-            StructuralPaterns.TestBridge();
+            StructuralPaterns.TestFlyweight();
             Console.ReadLine();
         }
     }
