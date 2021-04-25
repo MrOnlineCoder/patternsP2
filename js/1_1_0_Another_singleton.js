@@ -6,6 +6,8 @@ class Singleton {
     constructor(enforcer) {
         if (enforcer !== singletonEnforcer)
             throw "Instantiation failed: use Singleton.getInstance() instead of new.";
+        this.randomNumber = Math.random();
+        this.counter = 0;
     }
 
     static get _instance() {
@@ -18,8 +20,12 @@ class Singleton {
 
     static getInstance() { return this._instance; }
 
-    someBusinessLogic() {
-        console.log("Singleton")
+    print() {
+        console.log(`My random number = ${this.randomNumber}`);
+    }
+
+    incCounter() {
+        console.log(`Counter =${++this.counter}`);
     }
 
 }

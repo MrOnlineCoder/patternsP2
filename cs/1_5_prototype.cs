@@ -4,18 +4,20 @@ namespace Creational
 {
     namespace Prototype
     {
-
-        class SomeType
+        interface IPrototype {
+            IPrototype Clone();
+        }
+        class SomeType: IPrototype
         {
             public string Name = "No name";
             public int Count = 0;
 
-            public SomeType Clone()
+            public IPrototype Clone()
             {
                 return this.MemberwiseClone() as SomeType;
             }
         }
-        class ProductPrototype
+        class ProductPrototype: IPrototype
         {
             protected DateTime CreatedAt;
             protected int Id;
@@ -27,7 +29,7 @@ namespace Creational
                 this.Id = rnd.Next();
             }
 
-            public virtual ProductPrototype Clone()
+            public virtual IPrototype Clone()
             {
                 return this.MemberwiseClone() as ProductPrototype;
             }
@@ -43,7 +45,7 @@ namespace Creational
             public override CustomProduct Clone()
             {
                 CustomProduct clone = this.MemberwiseClone() as CustomProduct;
-                clone.obj = this.obj.Clone();
+                clone.obj = this.obj.Clone() as SomeType;
                 clone.CreatedAt = DateTime.Now;
                 return clone;
                 // return this.MemberwiseClone() as CustomProduct; // Deep copy problem

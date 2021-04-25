@@ -1,3 +1,9 @@
+class Prototype{
+    clone(){
+        return Object.assign({}, this);
+    }
+}
+
 class SomeType {
     constructor() {
         this.name = "Noname";
@@ -5,14 +11,10 @@ class SomeType {
     }
 }
 
-class ProductPrototype {
+class ProductPrototype extends Prototype {
     constructor() {
         this.createdAt = new Date(Date.now());
         this.id = Math.random();
-    }
-
-    clone() {
-        return Object.assign({}, this);
     }
 }
 
