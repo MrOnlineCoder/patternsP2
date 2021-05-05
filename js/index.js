@@ -3,5 +3,6 @@ const readLine = prompt()
 
 import creationalPaterns from "./testCreational";
 import structuralPaterns from "./testStructural";
+import behavioralPaterns from "./testBehavioral";
 
-structuralPaterns.testMixin();
+behavioralPaterns.testFunctionCahinOfResposibility();

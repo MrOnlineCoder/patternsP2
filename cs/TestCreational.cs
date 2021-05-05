@@ -93,7 +93,7 @@ namespace Test
             var p = new SomeType();
             CustomProduct product = new CustomProduct(p);
             CustomProduct productClone = product.Clone();
-            (productClone.obj as SomeType).Name = "x";
+            (productClone.obj as SomeType).Name = "New name";
             Console.WriteLine(product.ToString());
             Console.WriteLine(productClone.ToString());
         }
