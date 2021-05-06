@@ -29,7 +29,7 @@ class Folder {
     }
 
     remove(file) {
-        const index = this.files.findIndex(f => file.name === f.name);
+        const index = this.files.indexOf(file);
         if (index > -1)
             this.files.splice(index, 1);
         return this;
@@ -89,14 +89,13 @@ class FileRemoveVisitor {
     }
 
     visitFolder(folder) {
-        folder.files.forEach(
-            element => element.accept(this)
-        );
-        folder.files = folder.files.filter(
-            element => element.isComposite || element.ext != this.ext
-        )
+        for (let i = folder.files.length - 1; i >= 0; i--) {
+            const element = folder.files[i];
+            element.accept(this);
+            if (!element.isComposite && element.ext == this.ext)
+                folder.remove(element);
+        }
     }
-
 }
 
 export { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor };
