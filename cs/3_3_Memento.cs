@@ -25,11 +25,8 @@ namespace Behavioral.Memento
             string allowedSymbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string result = string.Empty;
 
-            while (length > 0)
-            {
+            for (int i = 0; i < length; i++)
                 result += allowedSymbols[new Random().Next(0, allowedSymbols.Length)];
-                length--;
-            }
 
             return result;
         }

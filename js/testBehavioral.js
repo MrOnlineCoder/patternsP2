@@ -1,6 +1,6 @@
 import { Context, ConcreteStrategyA, ConcreteStrategyB } from "./3_1_1_strategy";
 import { LogHandler, AuthorizeHandler, ResponceHandler } from "./3_2_1_chain";
-import { Originator, Caretaker } from "./3_3_mememnto";
+import { Originator, Caretaker } from "./3_3_memento";
 import { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor } from "./3_4_2_visitor";
 
 export default {

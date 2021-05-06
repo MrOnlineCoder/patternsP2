@@ -9,7 +9,7 @@ class Originator {
         console.log(`Originator: and my state has changed to: ${this._state}`);
     }
 
-    generateRandomString(length = 10) {
+    generateRandomString(length = 30) {
 
         function IntRandom(from = 0, to = 10) {
             return Math.ceil((to - from) * Math.random() + from);
@@ -18,10 +18,8 @@ class Originator {
         let allowedSymbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         let result = "";
 
-        while (length > 0) {
+        for (let i = 0; i < length; i++)
             result += allowedSymbols[IntRandom(0, allowedSymbols.length)];
-            length--;
-        }
 
         return result;
     }
@@ -31,12 +29,10 @@ class Originator {
     }
 
     restore(memento) {
-        if (memento && memento.state) {
-            this._state = memento.state;
-            console.log(`Originator: My state has changed to: ${this._state}"`);
-        }
-        else
-            throw "Unknown memento " + memento;
+        if (!memento || !memento.state)
+            throw `Unknown memento  ${memento}`;
+        this._state = memento.state;
+        console.log(`Originator: My state has changed to: ${this._state}"`);
     }
 }
 
