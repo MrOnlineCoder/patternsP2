@@ -1,8 +1,29 @@
 import { Context, ConcreteStrategyA, ConcreteStrategyB } from "./3_1_1_strategy";
 import { LogHandler, AuthorizeHandler, ResponceHandler } from "./3_2_1_chain";
 import { Originator, Caretaker } from "./3_3_mememnto";
+import { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor } from "./3_4_2_visitor";
 
 export default {
+    testVisitor() {
+        let root = new Folder("C")
+            .add(new File("package", "json", 512))
+            .add(new Folder("node_modules")
+                .add(new File("babel", "js", 1024))
+                .add(new File("express", "js", 2048))
+            )
+            .add(new File("index", "js", 768));
+
+        console.log(root.toString());
+
+        console.log(root.accept(new PrintVisitor));
+
+        console.log(`Total size is ${root.accept(new SizeVizitor())}\n`);
+
+        root.accept(new FileRemoveVisitor("js"));
+
+        console.log(root.accept(new PrintVisitor));
+        
+    },
     testMemento() {
 
         let originator = new Originator("Init state");

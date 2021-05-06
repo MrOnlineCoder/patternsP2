@@ -6,7 +6,7 @@ namespace cs
     {
         static void Main(string[] args)
         {
-            BehavioralPatterns.TestMemento();
+            BehavioralPatterns.TestPersonVisitor();
             Console.ReadLine();
         }
     }

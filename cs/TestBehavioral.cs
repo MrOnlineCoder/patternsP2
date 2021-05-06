@@ -4,12 +4,42 @@ using Behavioral.Strategy;
 using Behavioral.PaymentStrategy;
 using Behavioral.ChainOfResponsibility;
 using Behavioral.Memento;
+using Behavioral.Visistor;
+using Behavioral.PersonVisitor;
 
 namespace Test
 {
     class BehavioralPatterns
     {
+        public static void TestPersonVisitor()
+        {
+            Student student = new Student("Iванов", "Iван", 2);
+            Printer printer = new Printer();
+            Hi hi = new Hi();
+            student.Accept(printer);
+            student.Accept(hi);
+            Professor professor =  new Professor("Маляр", "Микола", "Миколайович", "Кiбернетики i прикладної математики");
+            professor.Accept(printer);
+            professor.Accept(hi);
+        }
+        public static void TestVisitor()
+        {
+            List<IComponent> components = new List<IComponent>
+            {
+                new ConcreteComponentA(),
+                new ConcreteComponentB()
+            };
 
+            Console.WriteLine("The client code works with all visitors via the base Visitor interface:");
+            var visitor1 = new ConcreteVisitor1();
+            Client.ClientCode(components, visitor1);
+
+            Console.WriteLine();
+
+            Console.WriteLine("It allows the same client code to work with different types of visitors:");
+            var visitor2 = new ConcreteVisitor2();
+            Client.ClientCode(components, visitor2);
+        }
         public static void TestMemento()
         {
             Originator originator = new Originator("Init state");
