@@ -9,9 +9,9 @@ namespace Creational
             string Operation();
         }
 
-        interface ICreator
+        abstract class ICreator
         {
-            IProduct CreateProduct();
+            public abstract IProduct CreateProduct();
 
             public List<IProduct> CreateProductList(int count)
             {
@@ -49,7 +49,7 @@ namespace Creational
 
         class ProductACreator : ICreator
         {
-            public IProduct CreateProduct()
+            public override IProduct CreateProduct()
             {
                 return new ProductA();
             }
@@ -57,7 +57,7 @@ namespace Creational
 
         class ProductBCreator : ICreator
         {
-            public IProduct CreateProduct()
+            public override IProduct CreateProduct()
             {
                 return new ProductВ();
             }
@@ -66,7 +66,7 @@ namespace Creational
 
         class ProductCCreator : ICreator
         {
-            public IProduct CreateProduct()
+            public override IProduct CreateProduct()
             {
                 return new ProductC();
             }

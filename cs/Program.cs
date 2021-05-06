@@ -6,7 +6,7 @@ namespace cs
     {
         static void Main(string[] args)
         {
-            StructuralPaterns.TestBridge();
+            BehavioralPatterns.TestChainOfResponsibility();
             Console.ReadLine();
         }
     }
