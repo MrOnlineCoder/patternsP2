@@ -9,7 +9,7 @@ namespace Behavioral.ChainOfResponsibility{
         object Handle(object request);
     }
 
-    abstract class AbstractHandler : IHandler
+    class AbstractHandler : IHandler
     {
         private IHandler _nextHandler;
 

@@ -96,7 +96,7 @@ namespace Behavioral.PaymentStrategy
                 return false;
             }
             CreditCard.Balance -= PaySum;
-            Console.WriteLine(@"Payment by MasterCard");
+            Console.WriteLine("Payment by MasterCard");
             return true;
         }
     }

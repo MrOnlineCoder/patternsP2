@@ -11,9 +11,11 @@ namespace Test
         public static void TestChainOfResponsibility()
         {
             var Chain = new LogHendler();
-            Chain.SetNext(new AuthorizeHendler()).SetNext(new ResponceHendler());
-            Console.WriteLine(Chain.Handle(new Request("admin", "admin")));
+            Chain
+                .SetNext(new AuthorizeHendler())
+                .SetNext(new ResponceHendler());
             Console.WriteLine(Chain.Handle(new Request("Noname", "No")));
+            Console.WriteLine(Chain.Handle(new Request("admin", "admin")));
         }
 
         public static void TestPaymentStrategy()
@@ -27,7 +29,7 @@ namespace Test
             PaymentProcessor processor = new PaymentProcessor();
             processor.strategies = new Dictionary<string, IPayment>(){
                 {"MASTER", new MasterCardPayment()},
-                {"VISA", new VisaPayment()}
+                {"VISA", new VisaPayment()},
             };
 
             Bill bill = new Bill(600);

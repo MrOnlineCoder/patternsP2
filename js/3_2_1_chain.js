@@ -22,25 +22,20 @@ class AuthorizeHandler extends Handler
 {
     
     Check(Login, Password){
-        console.log(Login);
         return Login == "admin" && Password == "admin";
     }
 
     Handle(request){
         console.log("Authorize");
-        if (request.Login && request.Password){
-            if(this.Check(request.Login, request.Password)){
-                return super.Handle(request);
-            }
-            else{
-                console.log("Wrong login or password");
-                return null;
-            }
-        }
-        else{
+        if (!request.Login || !request.Password){
             console.log("Bed request");
             return null;
         }
+        if(!this.Check(request.Login, request.Password)){
+            console.log("Wrong login or password");
+            return null;
+        }
+        return super.Handle(request);
     }
 }
 
