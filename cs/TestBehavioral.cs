@@ -3,11 +3,44 @@ using System.Collections.Generic;
 using Behavioral.Strategy;
 using Behavioral.PaymentStrategy;
 using Behavioral.ChainOfResponsibility;
+using Behavioral.Memento;
 
 namespace Test
 {
     class BehavioralPatterns
     {
+
+        public static void TestMemento()
+        {
+            Originator originator = new Originator("Init state");
+            Caretaker caretaker = new Caretaker(originator);
+
+            caretaker.Backup();
+            originator.DoSomething();
+
+            caretaker.Backup();
+            originator.DoSomething();
+
+            caretaker.Backup();
+            originator.DoSomething();
+
+            Console.WriteLine();
+            caretaker.ShowHistory();
+
+            Console.WriteLine("\nClient: Now, let's rollback!\n");
+            caretaker.Undo();
+
+            Console.WriteLine("\n\nClient: Once more!\n");
+            caretaker.Undo();
+
+            Console.WriteLine("\n\nClient: Once more!\n");
+            caretaker.Undo();
+
+            Console.WriteLine("\n\nClient: Once more!\n");
+            caretaker.Undo();
+
+            Console.WriteLine();
+        }
         public static void TestChainOfResponsibility()
         {
             var Chain = new LogHendler();

@@ -1,9 +1,9 @@
-class Handler{
-    setNext(handler){
+class Handler {
+    setNext(handler) {
         this._next = handler;
         return handler;
     }
-    handle(request){
+    handle(request) {
         if (this._next && this._next.handle)
             return this._next.handle(request);
         else
@@ -11,27 +11,26 @@ class Handler{
     }
 }
 
-class LogHandler extends Handler{
-    handle(request){
+class LogHandler extends Handler {
+    handle(request) {
         console.log(`Log\n ${JSON.stringify(request)}`);
         return super.handle(request);
     }
 }
 
-class AuthorizeHandler extends Handler
-{
-    
-    check(login, password){
+class AuthorizeHandler extends Handler {
+
+    check(login, password) {
         return login == "admin" && password == "admin";
     }
 
-    handle(request){
+    handle(request) {
         console.log("Authorize");
-        if (!request.login || !request.password){
+        if (!request.login || !request.password) {
             console.log("Bed request");
             return null;
         }
-        if(!this.check(request.login, request.password)){
+        if (!this.check(request.login, request.password)) {
             console.log("Wrong login or password");
             return null;
         }
@@ -39,11 +38,11 @@ class AuthorizeHandler extends Handler
     }
 }
 
-class ResponceHandler extends Handler{
-    handle(request){
+class ResponceHandler extends Handler {
+    handle(request) {
         console.log("Responce");
         return 42;
     }
 }
 
-export {LogHandler, AuthorizeHandler, ResponceHandler};
+export { LogHandler, AuthorizeHandler, ResponceHandler };
