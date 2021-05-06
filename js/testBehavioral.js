@@ -5,13 +5,14 @@ import { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor } from "./3_
 
 export default {
     testVisitor() {
-        let root = new Folder("C")
+        let root = new Folder("project")
             .add(new File("package", "json", 512))
             .add(new Folder("node_modules")
                 .add(new File("babel", "js", 1024))
                 .add(new File("express", "js", 2048))
             )
-            .add(new File("index", "js", 768));
+            .add(new File("index", "js", 768))
+            .add(new File("package-lock","json",2000));
 
         console.log(root.toString());
 
