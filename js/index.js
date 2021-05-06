@@ -4,4 +4,4 @@ const readLine = prompt()
 import creationalPaterns from "./testCreational";
 import structuralPaterns from "./testStructural";
 
-structuralPaterns.testMixin();
+structuralPaterns.testBridge();

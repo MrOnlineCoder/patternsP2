@@ -40,7 +40,7 @@ class BookWidget extends Widget{
 
 class BookSmallWidget extends BookWidget{
     get template(){
-        return `<h5 class="small-widge>${this.cutString(this.title, 10)}</h5>`
+        return `<h5 class="small-widget">${this.cutString(this.title, 10)}</h5>`
     }
 }
 

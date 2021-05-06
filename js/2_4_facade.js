@@ -50,7 +50,6 @@ const booksResource = [
     { id: 3, title: "Quicksilver" }
 ];
 
-
 const NOT_FOUND = { status: 404, error: `No item with this id found` };
 
 class CultureFacade {
