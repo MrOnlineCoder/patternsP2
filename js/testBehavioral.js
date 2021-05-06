@@ -7,10 +7,10 @@ export default {
     testCahinOfResposibility() {
         let chain = new LogHandler();
         chain
-            .SetNext(new AuthorizeHandler())
-            .SetNext(new ResponceHandler());
-        console.log(chain.Handle({ Login: "admin", Password: "admin" }));
-        console.log(chain.Handle({ Login: "Noname", Password: "No" }));
+            .setNext(new AuthorizeHandler())
+            .setNext(new ResponceHandler());
+        console.log(chain.handle({ login: "admin", password: "admin" }));
+        console.log(chain.handle({ login: "Noname", password: "No" }));
     },
     testStrategy() {
         const context = new Context();

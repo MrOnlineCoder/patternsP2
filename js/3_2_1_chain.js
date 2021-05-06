@@ -1,46 +1,46 @@
 class Handler{
-    SetNext(handler){
+    setNext(handler){
         this._next = handler;
         return handler;
     }
-    Handle(request){
-        if (this._next && this._next.Handle)
-            return this._next.Handle(request);
+    handle(request){
+        if (this._next && this._next.handle)
+            return this._next.handle(request);
         else
             return null;
     }
 }
 
 class LogHandler extends Handler{
-    Handle(request){
+    handle(request){
         console.log(`Log\n ${JSON.stringify(request)}`);
-        return super.Handle(request);
+        return super.handle(request);
     }
 }
 
 class AuthorizeHandler extends Handler
 {
     
-    Check(Login, Password){
-        return Login == "admin" && Password == "admin";
+    check(login, password){
+        return login == "admin" && password == "admin";
     }
 
-    Handle(request){
+    handle(request){
         console.log("Authorize");
-        if (!request.Login || !request.Password){
+        if (!request.login || !request.password){
             console.log("Bed request");
             return null;
         }
-        if(!this.Check(request.Login, request.Password)){
+        if(!this.check(request.login, request.password)){
             console.log("Wrong login or password");
             return null;
         }
-        return super.Handle(request);
+        return super.handle(request);
     }
 }
 
 class ResponceHandler extends Handler{
-    Handle(request){
+    handle(request){
         console.log("Responce");
         return 42;
     }
