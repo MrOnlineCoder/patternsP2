@@ -82,18 +82,19 @@ class FileRemoveVisitor {
     constructor(ext) {
         this.ext = ext;
     }
+    
     visitFile(file) {
-        if (file.ext === this.ext) {
-            console.log(`file ${file.name}.${file.ext} was removed`);
-        }
+        file.size = 0;
     }
 
     visitFolder(folder) {
         for (let i = folder.files.length - 1; i >= 0; i--) {
             const element = folder.files[i];
             element.accept(this);
-            if (!element.isComposite && element.ext == this.ext)
+            if (!element.isComposite && element.ext == this.ext) {
+                console.log(`file ${element.name}.${element.ext} was removed`);
                 folder.remove(element);
+            }
         }
     }
 }
