@@ -10,7 +10,7 @@ namespace Behavioral.Memento
         public Originator(string state)
         {
             this._state = state;
-            Console.WriteLine("Originator: My initial state is: " + state);
+            Console.WriteLine($"Originator: My initial state is: {state}");
         }
 
         public void DoSomething()
@@ -47,7 +47,6 @@ namespace Behavioral.Memento
             Console.Write($"Originator: My state has changed to: {_state}");
         }
     }
-
 
     public interface IMemento
     {

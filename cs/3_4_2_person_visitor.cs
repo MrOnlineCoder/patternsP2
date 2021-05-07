@@ -2,7 +2,13 @@ using System;
 
 namespace Behavioral.PersonVisitor
 {
-    public abstract class Person
+    
+    public interface IVisitable
+    {
+        void Accept(IVisitor visitor);
+    }
+
+    public abstract class Person : IVisitable
     {
         public string Name;
         public string Surname;
@@ -32,15 +38,15 @@ namespace Behavioral.PersonVisitor
         {
             return $"{Name}, {Surname}, {Course}";
         }
-        public void Print()
-        {
-            Console.WriteLine($"Студент {ToPrintString()}");
-        }
+        // public void Print()
+        // {
+        //     Console.WriteLine($"Студент {ToPrintString()}");
+        // }
 
-        public void SayHi()
-        {
-            Console.WriteLine($"Привіт, {Name}");
-        }
+        // public void SayHi()
+        // {
+        //     Console.WriteLine($"Привіт, {Name}");
+        // }
     }
 
     public class Professor : Person
@@ -59,17 +65,17 @@ namespace Behavioral.PersonVisitor
 
         public string ToPrintString()
         {
-            return $"{Name}, {Surname}, {Cathedra}";
+            return $"{Surname} {Name} {SecondName}, {Cathedra}";
         }
-        public void Print()
-        {
-            Console.WriteLine($"Викладач {ToPrintString()}");
-        }
+        // public void Print()
+        // {
+        //     Console.WriteLine($"Викладач {ToPrintString()}");
+        // }
 
-        public void SayHi()
-        {
-            Console.WriteLine($"Доброго дня, {Name} {SecondName}");
-        }
+        // public void SayHi()
+        // {
+        //     Console.WriteLine($"Доброго дня, {Name} {SecondName}");
+        // }
     }
 
     public interface IVisitor

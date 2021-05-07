@@ -14,7 +14,8 @@ export default {
             .add(new File("index", "js", 768))
             .add(new File("package-lock","json",2000));
 
-        console.log(root.toString());
+        //функціонал виводу в консоль перенесено у візитер
+        // console.log(root.toString());
 
         console.log(root.accept(new PrintVisitor));
 

@@ -13,12 +13,12 @@ namespace Test
     {
         public static void TestPersonVisitor()
         {
-            Student student = new Student("Iванов", "Iван", 2);
+            Student student = new Student("Iван", "Iванов", 2);
             Printer printer = new Printer();
             Hi hi = new Hi();
             student.Accept(printer);
             student.Accept(hi);
-            Professor professor =  new Professor("Маляр", "Микола", "Миколайович", "Кiбернетики i прикладної математики");
+            Professor professor = new Professor("Микола", "Маляр", "Миколайович", "Кiбернетики i прикладної математики");
             professor.Accept(printer);
             professor.Accept(hi);
         }
@@ -27,7 +27,8 @@ namespace Test
             List<IComponent> components = new List<IComponent>
             {
                 new ConcreteComponentA(),
-                new ConcreteComponentB()
+                new ConcreteComponentB(),
+                new ConcreteComponentA()
             };
 
             Console.WriteLine("The client code works with all visitors via the base Visitor interface:");
