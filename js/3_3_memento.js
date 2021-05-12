@@ -1,7 +1,7 @@
 class Originator {
     constructor(state) {
         this._state = state;
-        console.log("Originator: My initial state is: " + state);
+        console.log(`Originator: My initial state is: ${state}`);
     }
     doSomething() {
         console.log("Originator: I'm doing something important.");
@@ -32,7 +32,7 @@ class Originator {
         if (!memento || !memento.state)
             throw `Unknown memento  ${memento}`;
         this._state = memento.state;
-        console.log(`Originator: My state has changed to: ${this._state}"`);
+        console.log(`Originator: My state has changed to: ${this._state}`);
     }
 }
 
@@ -61,7 +61,8 @@ class Caretaker {
     }
     backup() {
         console.log("\nCaretaker: Saving Originator's state...");
-        this._mementos.push(this._originator.save());
+        this._mementos.push(Object.freeze(this._originator.save()));
+        
     }
     undo() {
         if (this._mementos.length == 0) {
