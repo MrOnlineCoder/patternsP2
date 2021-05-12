@@ -6,11 +6,59 @@ using Behavioral.ChainOfResponsibility;
 using Behavioral.Memento;
 using Behavioral.Visistor;
 using Behavioral.PersonVisitor;
+using Behavioral.Observer;
 
 namespace Test
 {
     class BehavioralPatterns
     {
+        public static void TestObserverEvent()
+        {
+            EventSubject subject = new EventSubject();
+            subject.CahngeStateEvent += EventHandlers.Log;
+            subject.CahngeStateEvent += EventHandlers.LogEven;
+            var Counter = new CounterEventObserver(state => state < 5);
+            Counter.Subscibe(subject);
+            for (int i = 0; i < 5; i++)
+                subject.GenerateRandomState();
+            Console.WriteLine("Detach even observer");
+            subject.CahngeStateEvent -= EventHandlers.LogEven;
+            for (int i = 0; i < 5; i++)
+                subject.GenerateRandomState();
+        }
+        public static void TestObserverDefault()
+        {
+            DefaultSubject subject = new DefaultSubject();
+            var Logger = new ConsoleLogDefaultObserver();
+            subject.Subscribe(Logger);
+            var Even = new EvenDefoultObserver();
+            Even.Subscribe(subject);
+            var Counter = new CounterDefaultObserver(x => x < 5);
+            Counter.Subscribe(subject);
+            for (int i = 0; i < 5; i++)
+                subject.GenerateRandomState();
+            Console.WriteLine("Detach even observer");
+            subject.Unsuscribe(Even);
+            for (int i = 0; i < 5; i++)
+                subject.GenerateRandomState();
+        }
+
+        public static void TestObserver()
+        {
+            Subject subject = new Subject();
+            ICusomObserver Logger = new ConsoleLogObserver();
+            ICusomObserver Even = new EvenObserver();
+            ICusomObserver Counter = new CounterObserver(state => state < 5);
+            subject.Attach(Logger);
+            subject.Attach(Even);
+            subject.Attach(Counter);
+            for (int i = 0; i < 5; i++)
+                subject.GenerateRandomState();
+            Console.WriteLine("Detach even observer");
+            subject.Detach(Even);
+            for (int i = 0; i < 5; i++)
+                subject.GenerateRandomState();
+        }
         public static void TestPersonVisitor()
         {
             Student student = new Student("Iванов", "Iван", 2);
@@ -18,7 +66,7 @@ namespace Test
             Hi hi = new Hi();
             student.Accept(printer);
             student.Accept(hi);
-            Professor professor =  new Professor("Маляр", "Микола", "Миколайович", "Кiбернетики i прикладної математики");
+            Professor professor = new Professor("Маляр", "Микола", "Миколайович", "Кiбернетики i прикладної математики");
             professor.Accept(printer);
             professor.Accept(hi);
         }

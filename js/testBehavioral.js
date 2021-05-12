@@ -2,8 +2,38 @@ import { Context, ConcreteStrategyA, ConcreteStrategyB } from "./3_1_1_strategy"
 import { LogHandler, AuthorizeHandler, ResponceHandler } from "./3_2_1_chain";
 import { Originator, Caretaker } from "./3_3_memento";
 import { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor } from "./3_4_2_visitor";
+import { Subject, ConsoleLogObserver, EvenObserver, CounterObserver } from "./3_5_1_observer";
+import { EventSubject, EventHandlers, CounterEventObserver } from "./3_5_2_observer_event";
 
 export default {
+    testEventObserver() {
+        let subject = new EventSubject();
+        subject.addEventListener("change", EventHandlers.log);
+        subject.addEventListener("change", EventHandlers.logEven);
+        let counter = new CounterEventObserver(x => x < 5);
+        counter.subscribe(subject);
+        for (let i = 0; i < 1; i++)
+            subject.generateRandomState();
+        console.log("Detach even observer");
+        subject.removeEventListener("change", EventHandlers.logEven);
+        for (let i = 0; i < 5; i++)
+            subject.generateRandomState();
+    },
+    testObserver() {
+        let subject = new Subject();
+        let Logger = new ConsoleLogObserver();
+        let Even = new EvenObserver();
+        let Counter = new CounterObserver(state => state < 5);
+        subject.attach(Logger);
+        subject.attach(Even);
+        subject.attach(Counter);
+        for (let i = 0; i < 5; i++)
+            subject.generateRandomState();
+        console.log("Detach even observer");
+        subject.detach(Even);
+        for (let i = 0; i < 5; i++)
+            subject.generateRandomState();
+    },
     testVisitor() {
         let root = new Folder("project")
             .add(new File("package", "json", 512))
@@ -12,7 +42,7 @@ export default {
                 .add(new File("express", "js", 2048))
             )
             .add(new File("index", "js", 768))
-            .add(new File("package-lock","json",2000));
+            .add(new File("package-lock", "json", 2000));
 
         console.log(root.toString());
 
@@ -23,7 +53,7 @@ export default {
         root.accept(new FileRemoveVisitor("js"));
 
         console.log(root.accept(new PrintVisitor));
-        
+
     },
     testMemento() {
 
