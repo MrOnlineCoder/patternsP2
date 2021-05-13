@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Behavioral.Observer
 {
+
     class DefaultSubject : IObservable<int>
     {
         private int _state = 0;
