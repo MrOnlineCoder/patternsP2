@@ -4,8 +4,40 @@ import { Originator, Caretaker } from "./3_3_memento";
 import { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor } from "./3_4_2_visitor";
 import { Subject, ConsoleLogObserver, EvenObserver, CounterObserver } from "./3_5_1_observer";
 import { EventSubject, EventHandlers, CounterEventObserver } from "./3_5_2_observer_event";
+import DefaultIterator from "./3_7_1_default_iterator";
+import Iterable from "./3_7_2_generator";
+import IterableComposite from "./3_7_3_iterable_composite";
+
 
 export default {
+    testIterableComposite(){
+        let root = new Folder("project")
+        .add(new File("package", "json", 512))
+        .add(new Folder("node_modules")
+            .add(new File("babel", "js", 1024))
+            .add(new File("express", "js", 2048))
+        )
+        .add(new File("index", "js", 768))
+        .add(new File("package-lock", "json", 2000));
+
+        
+        let iRoot = new IterableComposite(root);
+        for (let el of iRoot)
+            console.log(el);
+    },
+    testIterator() {
+        let iterable = new DefaultIterator([1, 2, 3, 4]);
+        let element = iterable.next();
+        while (!element.done) {
+            console.log(element.value);
+            element = iterable.next();
+        }
+
+        iterable = new Iterable([1,2,3,4]);
+        for (let el of iterable){
+            console.log(el);
+        }
+    },
     testEventObserver() {
         let subject = new EventSubject();
         subject.addEventListener("change", EventHandlers.log);
