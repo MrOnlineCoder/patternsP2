@@ -78,6 +78,26 @@ class PrintVisitor {
     }
 }
 
+class SortVisitor {
+    visitFile(file, level = 0) {
+        throw new Error(`Sorting single file is not possible. Use SortVisitor on folders only.`);
+    }
+
+    visitFolder(folder, level = 0) {
+        const subfolders = folder.elements.filter(el => el.isComposite);
+        const files = folder.elements.filter(el => !el.isComposite);
+
+        const alphabeticalSorter = (a,b) => a.name.localeCompare(b.name);
+
+        subfolders.sort(alphabeticalSorter);
+        files.sort(alphabeticalSorter);
+
+        folder.elements = subfolders.concat(files);
+
+        subfolders.forEach(f => f.accept(this, level + 1));
+    }
+}
+
 class FileRemoveVisitor {
     constructor(ext) {
         this.ext = ext;
@@ -99,4 +119,4 @@ class FileRemoveVisitor {
     }
 }
 
-export { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor };
+export { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor, SortVisitor };

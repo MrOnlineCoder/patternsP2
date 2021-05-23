@@ -1,12 +1,12 @@
-import { Context, ConcreteStrategyA, ConcreteStrategyB } from "./3_1_1_strategy";
-import { LogHandler, AuthorizeHandler, ResponceHandler } from "./3_2_1_chain";
-import { Originator, Caretaker } from "./3_3_memento";
-import { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor } from "./3_4_2_visitor";
-import { Subject, ConsoleLogObserver, EvenObserver, CounterObserver } from "./3_5_1_observer";
-import { EventSubject, EventHandlers, CounterEventObserver } from "./3_5_2_observer_event";
-import DefaultIterator from "./3_7_1_default_iterator";
-import Iterable from "./3_7_2_generator";
-import IterableComposite from "./3_7_3_iterable_composite";
+// import { Context, ConcreteStrategyA, ConcreteStrategyB } from "./3_1_1_strategy";
+// import { LogHandler, AuthorizeHandler, ResponceHandler } from "./3_2_1_chain";
+// import { Originator, Caretaker } from "./3_3_memento";
+import { File, Folder, SizeVizitor, PrintVisitor, FileRemoveVisitor, SortVisitor } from "./3_4_2_visitor";
+// import { Subject, ConsoleLogObserver, EvenObserver, CounterObserver } from "./3_5_1_observer";
+// import { EventSubject, EventHandlers, CounterEventObserver } from "./3_5_2_observer_event";
+// import DefaultIterator from "./3_7_1_default_iterator";
+// import Iterable from "./3_7_2_generator";
+// import IterableComposite from "./3_7_3_iterable_composite";
 
 
 export default {
@@ -72,6 +72,12 @@ export default {
             .add(new Folder("node_modules")
                 .add(new File("babel", "js", 1024))
                 .add(new File("express", "js", 2048))
+                .add(new File("async", "js", 4096))
+            )
+            .add(new Folder("src")
+                .add(new File("controllers", "js", 1024))
+                .add(new File("services", "js", 2048))
+                .add(new File("models", "js", 4096))
             )
             .add(new File("index", "js", 768))
             .add(new File("package-lock", "json", 2000));
@@ -79,11 +85,15 @@ export default {
         //функціонал виводу в консоль перенесено у візитер
         // console.log(root.toString());
 
+        root.accept(new SortVisitor());
+
         console.log(root.accept(new PrintVisitor));
 
         console.log(`Total size is ${root.accept(new SizeVizitor())}\n`);
 
         root.accept(new FileRemoveVisitor("js"));
+
+        
 
         console.log(root.accept(new PrintVisitor));
 
